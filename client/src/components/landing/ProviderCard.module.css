@@ -1,0 +1,94 @@
+.card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 150ms ease;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+}
+
+.cardConnected {
+  cursor: pointer;
+}
+
+.cardSelected {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-subtle);
+}
+
+.letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: 14px;
+  flex-shrink: 0;
+  color: white;
+}
+
+.letterConnected {
+  background: var(--accent);
+}
+
+.letterDefault {
+  background: var(--surface-3);
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardAuthActive {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-subtle);
+}
+
+.btnDisabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.connectedActions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.check {
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+.disconnectBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0 2px;
+  opacity: 0;
+  transition:
+    opacity 150ms ease,
+    color 150ms ease;
+}
+
+.card:hover .disconnectBtn {
+  opacity: 1;
+}
+
+.disconnectBtn:hover {
+  color: var(--error);
+}

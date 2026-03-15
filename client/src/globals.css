@@ -1,0 +1,111 @@
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* CSS custom properties */
+:root {
+  /* Fonts */
+  --font-ui: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-prose: 'IBM Plex Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+
+  /* Layout dimensions */
+  --topbar-h: 48px;
+  --sidebar-w: 268px;
+  --chat-w: 400px;
+}
+
+/* Root element styling */
+html {
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography defaults */
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-prose);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
+mark {
+  background: var(--warning-subtle);
+  color: inherit;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+button,
+input,
+select,
+textarea {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Selection styling */
+::selection {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Focus ring styling */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling - dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--surface-1, #2a2520);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border, #4a433b);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover, #5a524a);
+}
+
+/* Print styles */
+@media print {
+  * {
+    transition: none !important;
+  }
+}

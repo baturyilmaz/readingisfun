@@ -1,0 +1,226 @@
+/* ===== Reader Mode — react-reader wrapper ===== */
+.reader {
+  height: 100dvh;
+  position: relative;
+  background: var(--reader-bg);
+  color: var(--reader-text);
+}
+
+.reader ::selection {
+  background: var(--reader-accent);
+  color: #fff;
+}
+
+/* ===== Floating Controls ===== */
+.controls {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  border-radius: 40px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  z-index: 50;
+  transition: opacity 250ms ease, transform 250ms ease;
+}
+
+.controlsHidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(8px);
+  pointer-events: none;
+}
+
+.controlBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--reader-text);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 150ms ease;
+}
+
+.controlBtn:hover { background: var(--reader-border); }
+.controlBtnActive { background: var(--reader-accent); color: #fff; }
+.controlBtnActive:hover { background: var(--reader-accent); opacity: 0.9; }
+
+.controlProgress {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--reader-muted);
+  padding: 0 4px;
+  min-width: 32px;
+  text-align: center;
+  user-select: none;
+}
+
+.controlDivider {
+  width: 1px;
+  height: 20px;
+  background: var(--reader-border);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* ===== Bottom Trigger Zone ===== */
+.bottomTrigger {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  z-index: 45;
+}
+
+/* ===== Selection Popup ===== */
+.selectionPopup {
+  position: fixed;
+  transform: translate(-50%, -100%);
+  display: flex;
+  gap: 1px;
+  background: var(--reader-border);
+  border-radius: 8px;
+  overflow: hidden;
+  z-index: 80;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.selectionBtn {
+  background: var(--reader-surface);
+  border: none;
+  padding: 8px 16px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--reader-text);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.selectionBtn:hover {
+  background: var(--reader-accent);
+  color: #fff;
+}
+
+/* ===== Settings Popover ===== */
+.settingsPopover {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--reader-surface);
+  border: 1px solid var(--reader-border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  z-index: 55;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 220px;
+}
+
+.settingsRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settingsLabel {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--reader-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  min-width: 48px;
+}
+
+.themeCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.themeCircle:hover { opacity: 0.8; }
+.themeCircleActive { border-color: var(--reader-accent) !important; }
+
+.themeLight { background: #fafaf8; border-color: #e0dcd6; }
+.themeSepia { background: #f5ecd7; border-color: #d4c9b5; }
+.themeDark { background: #0a0a0a; border-color: #2a2a28; }
+
+.fontSizeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--reader-border);
+  border-radius: 6px;
+  background: none;
+  color: var(--reader-text);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fontSizeBtn:hover { background: var(--reader-border); }
+
+.fontSizeValue {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--reader-text);
+  min-width: 32px;
+  text-align: center;
+}
+
+/* ===== Slide-Over Panel (AI/Notes) ===== */
+.panelBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: 60;
+}
+
+.panelSlideOver {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(420px, 85vw);
+  height: 100dvh;
+  background: var(--reader-surface);
+  border-left: 1px solid var(--reader-border);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Map reader vars to app vars for child components */
+  --bg-base: var(--reader-bg);
+  --surface-0: var(--reader-surface);
+  --surface-1: var(--reader-border);
+  --surface-2: var(--reader-border);
+  --surface-3: var(--reader-surface);
+  --text: var(--reader-text);
+  --text-secondary: var(--reader-muted);
+  --text-tertiary: var(--reader-muted);
+  --border: var(--reader-border);
+  --border-subtle: var(--reader-border);
+  --border-hover: var(--reader-muted);
+  --accent: var(--reader-accent);
+  --accent-hover: var(--reader-accent);
+}

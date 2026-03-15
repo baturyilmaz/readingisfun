@@ -1,0 +1,153 @@
+.page {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-base);
+  padding: 24px;
+  overflow: hidden;
+}
+
+.card {
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100dvh - 48px);
+  padding: 32px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+/* Completed rows animation */
+.completedEnter {
+  animation: slideIn 300ms ease-out both;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Active step */
+.activeStep {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  min-height: 0;
+  animation: stepAppear 200ms ease-out 100ms both;
+}
+
+@keyframes stepAppear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Model scroll container */
+.modelScroll {
+  flex: 1;
+  min-height: 0;
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.modelScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modelScroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 3px;
+}
+
+.modelScroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+  transition: background 150ms ease;
+}
+
+.modelScroll::-webkit-scrollbar-thumb:hover {
+  background: var(--border-hover);
+}
+
+/* Card list */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Button fade in after selection */
+.buttonFadeIn {
+  animation: fadeIn 150ms ease-out both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Pulse animation for sync/parse */
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.85;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Error text */
+.errorText {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--error);
+  margin: 0;
+  text-align: center;
+}
+
+/* Status text during parse */
+.statusText {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 0;
+  text-align: center;
+}
+
+/* Loader wrapper */
+.loaderWrap {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
